@@ -34,17 +34,50 @@
     margin: 1rem 0;
   }
 
-  /* Container for flower + watering can */
+  /* Container for watering can + water + flower */
   .watering-flower-container {
     display: flex;
-    justify-content: center; /* center horizontally */
+    flex-direction: column;  /* stack vertically */
+    align-items: center;     /* center horizontally */
     margin-top: 2rem;
+  }
+
+  /* Watering can + water wrapper */
+  .watering-can-wrapper {
     position: relative;
   }
 
-  .flower-wrapper {
-    position: relative;
-    display: inline-block;
+  .watering-can {
+    width: 80px;
+    display: block;
+    animation: tilt 2s infinite;
+    transform-origin: top right;
+  }
+
+  .water {
+    width: 5px;
+    height: 60px;
+    background: lightblue;
+    position: absolute;
+    top: 60px;            /* just below can */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    animation: flow 2s infinite;
+  }
+
+  @keyframes tilt {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-25deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-25deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes flow {
+    0% { height: 0px; opacity: 0; }
+    50% { height: 60px; opacity: 1; }
+    100% { height: 0px; opacity: 0; }
   }
 
   /* Flower styling */
@@ -52,7 +85,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin-top: 0;
+    margin-top: 0.5rem;  /* spacing below water */
   }
 
   .petal {
@@ -80,44 +113,6 @@
     left: 50px;
     transform: translate(0%, 0%);
   }
-
-  /* Watering can styling */
-  .watering-can {
-    width: 80px;
-    position: absolute;
-    top: -60px; /* sits above flower */
-    left: 50%;
-    transform: translateX(-50%);
-    animation: tilt 2s infinite;
-    transform-origin: top right;
-  }
-
-  @keyframes tilt {
-    0% { transform: translateX(-50%) rotate(0deg); }
-    25% { transform: translateX(-50%) rotate(-25deg); }
-    50% { transform: translateX(-50%) rotate(0deg); }
-    75% { transform: translateX(-50%) rotate(-25deg); }
-    100% { transform: translateX(-50%) rotate(0deg); }
-  }
-
-  /* Water stream */
-  .water {
-    width: 5px;
-    height: 60px;
-    background: lightblue;
-    position: absolute;
-    top: -10px; /* starts just below spout */
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-    animation: flow 2s infinite;
-  }
-
-  @keyframes flow {
-    0% { height: 0px; opacity: 0; }
-    50% { height: 60px; opacity: 1; }
-    100% { height: 0px; opacity: 0; }
-  }
 </style>
 </head>
 <body>
@@ -134,16 +129,16 @@
 
 <!-- Watering can + water + flower -->
 <div class="watering-flower-container">
-  <div class="flower-wrapper">
-    <img src="assets/watering-can.jpeg" alt="Watering Can" class="watering-can">
+  <div class="watering-can-wrapper">
+    <img src="assets/watering-can.jpg" alt="Watering Can" class="watering-can">
     <div class="water"></div>
-    <div class="flower">
-      <div class="petal petal1"></div>
-      <div class="petal petal2"></div>
-      <div class="petal petal3"></div>
-      <div class="petal petal4"></div>
-      <div class="center"></div>
-    </div>
+  </div>
+  <div class="flower">
+    <div class="petal petal1"></div>
+    <div class="petal petal2"></div>
+    <div class="petal petal3"></div>
+    <div class="petal petal4"></div>
+    <div class="center"></div>
   </div>
 </div>
 
