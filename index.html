@@ -46,7 +46,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin-top: 60px; /* space for water */
+    margin-top: 0;
   }
 
   .petal {
@@ -79,7 +79,7 @@
   .watering-can {
     width: 80px;
     position: absolute;
-    top: 0;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     animation: tilt 2s infinite;
@@ -100,12 +100,13 @@
     height: 60px;
     background: lightblue;
     position: absolute;
-    top: 60px; /* start below can */
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2px;
     animation: flow 2s infinite;
   }
+
 
   @keyframes flow {
     0% { height: 0px; opacity: 0; }
