@@ -32,6 +32,17 @@
       font-size: 1.2rem;
       font-weight: bold;
     }
+    #history {
+      margin-top: 2rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+    #history h2 {
+      margin-bottom: 0.5rem;
+    }
+    #history ul {
+      padding-left: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -46,10 +57,31 @@
   <input type="number" id="b" placeholder="Enter number B">
 
   <button onclick="calculateMod()">Calculate</button>
+  <button onclick="clearHistory()" style="margin-top:0.5rem; background:#ffdddd;">Clear History</button>
 
   <div id="result"></div>
+  
+  <div id="history">
+    <h2>History</h2>
+    <ul id="historyList"></ul>
+  </div>
 
   <script>
+    let history = JSON.parse(localStorage.getItem("modHistory")) || [];
+
+    function updateHistoryList() {
+      const historyList = document.getElementById("historyList");
+      historyList.innerHTML = "";
+      history.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        historyList.appendChild(li);
+      });
+    }
+
+    // Initial display
+    updateHistoryList();
+
     function calculateMod() {
       const a = parseFloat(document.getElementById("a").value);
       const b = parseFloat(document.getElementById("b").value);
@@ -66,9 +98,27 @@
 
       const quotient = Math.floor(a / b);
       const remainder = a % b;
+      const output = `${quotient} mod ${remainder}`;
 
-      document.getElementById("result")
-        .textContent = `${quotient} mod ${remainder}`;
+      // Display current result
+      document.getElementById("result").textContent = `Result: ${output}`;
+
+      // Save to history (most recent first)
+      history.unshift(`${a} % ${b} = ${output}`);
+      if (history.length > 5) history.pop();
+
+      // Save to localStorage
+      localStorage.setItem("modHistory", JSON.stringify(history));
+
+      // Update display
+      updateHistoryList();
+    }
+
+    function clearHistory() {
+      history = [];
+      localStorage.removeItem("modHistory");
+      updateHistoryList();
+      document.getElementById("result").textContent = "";
     }
   </script>
 
