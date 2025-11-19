@@ -59,8 +59,16 @@
         return;
       }
 
-      const result = a % b;
-      document.getElementById("result").textContent = `Result: ${a} % ${b} = ${result}`;
+      if (b === 0) {
+        document.getElementById("result").textContent = "Cannot divide by zero.";
+        return;
+      }
+
+      const quotient = Math.floor(a / b);
+      const remainder = a % b;
+
+      document.getElementById("result")
+        .textContent = `${quotient} mod ${remainder}`;
     }
   </script>
 
