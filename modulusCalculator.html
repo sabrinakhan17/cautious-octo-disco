@@ -105,7 +105,7 @@
 
       // Save to history (most recent first)
       history.unshift(`${a} % ${b} = ${output}`);
-      if (history.length > 5) history.pop();
+      // if (history.length > 5) history.pop();
 
       // Save to localStorage
       localStorage.setItem("modHistory", JSON.stringify(history));
