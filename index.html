@@ -34,11 +34,17 @@
     margin: 1rem 0;
   }
 
-  /* Container for watering can + water + flower */
+  /* Container for flower + watering can */
   .watering-flower-container {
-    display: inline-block;
-    position: relative;
+    display: flex;
+    justify-content: center; /* center horizontally */
     margin-top: 2rem;
+    position: relative;
+  }
+
+  .flower-wrapper {
+    position: relative;
+    display: inline-block;
   }
 
   /* Flower styling */
@@ -79,7 +85,7 @@
   .watering-can {
     width: 80px;
     position: absolute;
-    top: -40px;
+    top: -60px; /* sits above flower */
     left: 50%;
     transform: translateX(-50%);
     animation: tilt 2s infinite;
@@ -100,13 +106,12 @@
     height: 60px;
     background: lightblue;
     position: absolute;
-    top: 50px;
+    top: -10px; /* starts just below spout */
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2px;
     animation: flow 2s infinite;
   }
-
 
   @keyframes flow {
     0% { height: 0px; opacity: 0; }
@@ -129,14 +134,16 @@
 
 <!-- Watering can + water + flower -->
 <div class="watering-flower-container">
-  <img src="assets/watering-can.jpeg" alt="Watering Can" class="watering-can">
-  <div class="water"></div>
-  <div class="flower">
-    <div class="petal petal1"></div>
-    <div class="petal petal2"></div>
-    <div class="petal petal3"></div>
-    <div class="petal petal4"></div>
-    <div class="center"></div>
+  <div class="flower-wrapper">
+    <img src="assets/watering-can.jpeg" alt="Watering Can" class="watering-can">
+    <div class="water"></div>
+    <div class="flower">
+      <div class="petal petal1"></div>
+      <div class="petal petal2"></div>
+      <div class="petal petal3"></div>
+      <div class="petal petal4"></div>
+      <div class="center"></div>
+    </div>
   </div>
 </div>
 
