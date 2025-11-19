@@ -40,19 +40,20 @@
     flex-direction: column;  /* stack vertically */
     align-items: center;     /* center horizontally */
     margin-top: 2rem;
+    position: relative;
   }
 
   /* Watering can + water wrapper */
   .watering-can-wrapper {
     position: relative;
+    display: flex;
+    justify-content: flex-start; /* aligns can to the left inside wrapper */
+    width: 100px;
   }
 
   .watering-can {
     width: 80px;
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-60%);
+    display: block;
     animation: tilt 2s infinite;
     transform-origin: top right;
   }
